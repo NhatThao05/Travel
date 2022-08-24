@@ -9,13 +9,14 @@ import { client } from "../client";
 import Logo from '../assets/Logo.png'
 import Pins from "./Pins";
 import { userQuery } from "../utils/data";
+import { fetchUser } from "../utils/fetchUser";
 
 export default function Home() {
  const [toggleNavbar, setToggleNavbar] = useState(false);
  const [user, setUser] = useState(null);
  const scrollRef = useRef(null);
 
- const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
+ const userInfo = fetchUser()
 
  useEffect(() => {
   const query = userQuery(userInfo?.googleId);
