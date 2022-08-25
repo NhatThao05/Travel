@@ -13,7 +13,7 @@ import { fetchUser } from "../utils/fetchUser";
 
 export default function Home() {
  const [toggleNavbar, setToggleNavbar] = useState(false);
- const [user, setUser] = useState(null);
+ const [user, setUser] = useState();
  const scrollRef = useRef(null);
 
  const userInfo = fetchUser()
@@ -23,7 +23,7 @@ export default function Home() {
   client.fetch(query).then((data) => {
    setUser(data[0])
   })
- }, [])
+ }, [setUser, userInfo])
 
  useEffect(() => {
   scrollRef.current.scrollTo(0,0)

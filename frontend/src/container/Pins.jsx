@@ -8,7 +8,6 @@ import CreatePin from '../components/CreatePin';
 import Search from '../components/Search';
 
 export default function Pins({user}) {
- console.log(user)
  const [searchTerm, setSearchTerm] = useState('');
  return(
   <div className="px-2 md:px-5">
@@ -20,7 +19,7 @@ export default function Pins({user}) {
      <Route path="/" element={<Feed />} />
      <Route path="/category/:categoryId" element={<Feed />} />
      <Route path="/pin-detail/:pinId" element={<PinDetail user={user}/>} />
-     <Route path="/create-pin" element={<CreatePin user={user}/>} />
+     <Route path="/create-pin" element={(<CreatePin user={user}/>)} />
      <Route path="/search" element={<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />} />
     </Routes>
    </div>

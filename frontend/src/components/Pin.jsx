@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { urlFor, client } from "../client";
-import {Link, Navigate, useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {v4} from 'uuid';
 import {MdDownloadForOffline} from 'react-icons/md';
 import {AiFillDelete} from 'react-icons/ai';
@@ -31,19 +31,12 @@ export default function Pin({pin: {postedBy, image, _id, destination, save}}) {
   }
  }
 
- const deletePin = (id) => {
-  client.delete(id).then(() => {
-   window.location.reload()
-  })
- }
-
-
  return(
   <div className="m-2">
    <div 
      onMouseEnter={() => setPostHovered(true)}
      onMouseLeave={() => setPostHovered(false)}
-     onClick={() => Navigate(`/pin-detail/${_id}`)}
+     onClick={() => navigate(`/pin-detail/${_id}`)}
      className="relative cursor-zoom-in w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-in-out"
    >
     <img className="rounded-lg w-full" alt="user-post" src={urlFor(image).width(250).url()}/>
@@ -72,7 +65,7 @@ export default function Pin({pin: {postedBy, image, _id, destination, save}}) {
           }}
           type="button" 
           className="bg-red-500 text-white opacity-70 hover:opacity-100 font-bold px-2 py-1 text-base rounded-3xl hover:shadow-md outline-none">
-          Wish
+           Wish
          </button>
         )}
        </div>
@@ -88,18 +81,6 @@ export default function Pin({pin: {postedBy, image, _id, destination, save}}) {
            {destination.length > 20 ? destination.slice(8, 20) : destination.slice(8)}
           </a>
          )}
-         {/* {postedBy?._id === user.googleId && (
-          <button 
-            type="button"
-            onClick={(e) => {
-             e.stopPropagation();
-             deletePin(_id);
-            }}
-            className="bg-white p-2 opacity-70 hover:opacity-100 font-bold text-dark text-base rounded-3xl hover:shadow-md outline-none"
-          >
-            <AiFillDelete />
-          </button>
-         )} */}
        </div>
      </div>
     )}
